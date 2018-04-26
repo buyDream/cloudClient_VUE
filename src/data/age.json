@@ -1,0 +1,27 @@
+[
+    {
+        "name": "不限",
+        "value": "000",
+        "isChecked": true
+    },
+    {
+        "name": "0-9",  
+        "value": "001",
+        "isChecked": false
+    },
+    {
+        "name": "10-20", 
+        "value": "002",
+        "isChecked": false
+    },
+    {
+        "name": "21-40", 
+        "value": "003",
+        "isChecked": false
+    },
+    {
+        "name": "over41", 
+        "value": "004",
+        "isChecked": false
+    }
+]

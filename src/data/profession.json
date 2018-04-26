@@ -1,0 +1,10 @@
+[
+    {"name": "不限", "value": 0},
+    {"name": "公司职员", "value": 1},
+    {"name": "个体经营", "value": 2},
+    {"name": "医务人员", "value": 3},
+    {"name": "公务员", "value": 4},
+    {"name": "教职工", "value": 5},
+    {"name": "工人", "value": 6},
+    {"name": "学生", "value": 7}
+]

@@ -1,0 +1,58 @@
+.tintColor {
+    color: #147ce8;
+  }
+  
+.tintBgColor {
+    background: #147ce8;
+}
+.balcneColor {
+    color: rgb(0, 120, 201);
+}
+
+.borderColor {
+    border: 1px solid rgb(230, 231, 232);
+    border-radius: 3px;
+}
+
+.fl {
+    float: left;
+}
+  
+.fr {
+    float: right;
+}
+
+.inlineBlock {
+    display: inline-block;
+}
+
+.mainPage {
+    background:white;
+    text-align: left;
+}
+
+.mainPage .pageTitle {
+    color: #2F3A53;
+}
+
+.mainPage .notice-msg {
+    color: red;
+    font-size: 12px;
+}
+
+.mainPage .contenArea {
+    padding: 10px 10px 10px 10px;
+}
+
+.redText {
+    color: red;
+}
+
+/* 弹框头部颜色 */
+.el-dialog__header {
+    background: rgb(237, 238, 239);
+}
+
+.el-dialog {
+    min-width: 470px;
+}

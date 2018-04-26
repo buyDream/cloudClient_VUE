@@ -1,0 +1,42 @@
+[
+    {
+        "name": "不限", 
+        "value": 0,
+        "isChecked": true
+    },
+    {
+        "name": "北京", 
+        "value": 1,
+        "isChecked": false
+    },
+    {
+        "name": "天津", 
+        "value": 2,
+        "isChecked": false
+    },
+    {
+        "name": "上海", 
+        "value": 3,
+        "isChecked": false
+    },
+    {
+        "name": "重庆", 
+        "value": 4,
+        "isChecked": false
+    },
+    {
+        "name": "广东", 
+        "value": 5,
+        "isChecked": false
+    },
+    {
+        "name": "浙江", 
+        "value": 6,
+        "isChecked": false
+    },
+    {
+        "name": "江苏", 
+        "value": 7,
+        "isChecked": false
+    }
+]

@@ -1,0 +1,355 @@
+{
+    "/accountInfo": [
+        {
+            "name": "activityType",
+            "showName": "活动类型",
+            "width": "1px",
+            "format": [
+                {"itemName": "当天赏金活动", "itemValue": "1"},
+                {"itemName": "回购赏金活动", "itemValue": "2"}
+            ],
+            "visible": true
+        },
+        {
+            "name": "returnType",
+            "showName": "返款状态",
+            "width": "1px",
+            "format": [
+                {"itemName": "未返款", "itemValue": "5"},
+                {"itemName": "已返款", "itemValue": "6"}
+            ],
+            "visible": true
+        },
+        {
+            "name": "activityShop",
+            "showName": "店铺",
+            "width": "1px",
+            "format": [
+                {"itemName": "店铺1", "itemValue": "1"},
+                {"itemName": "店铺2", "itemValue": "2"},
+                {"itemName": "店铺3", "itemValue": "3"}
+            ],
+            "visible": true
+        },
+        {
+            "name": "rangeTime",
+            "showName": "时间范围",
+            "width": "1px",
+            "format": "dateRange",
+            "visible": true
+        },
+        {
+            "name": "orderID",
+            "showName": "订单号",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "wechatID",
+            "showName": "微信号",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "activityID",
+            "showName": "活动ID",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "activityGroupID",
+            "showName": "活动组ID",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "format": "buttonVisiable",
+            "name": "bottomButtonsVisiable",
+            "outputButton": false,
+            "batchSignButton": false,
+            "batchCheckButton": false
+        }
+    ],
+
+    "/auditor": [
+        {
+            "name": "userName",
+            "showName": "用户名",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "wwID",
+            "showName": "旺旺号",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "gender",
+            "showName": "性别",
+            "width": "1px",
+            "format": [
+                {"itemName": "男", "itemValue": "1"},
+                {"itemName": "女", "itemValue": "2"}
+            ],
+            "visible": true
+        },
+        {
+            "name": "taoqiValue",
+            "showName": "淘气值",
+            "width": "1px",
+            "format": [
+                {"itemName": "400", "itemValue": "400"},
+                {"itemName": "401-500", "itemValue": "401-500"},
+                {"itemName": "501-600", "itemValue": "501-600"},
+                {"itemName": "601-800", "itemValue": "601-800"},
+                {"itemName": "801-1000", "itemValue": "801-1000"},
+                {"itemName": "1000以上", "itemValue": "1000以上"}
+            ],
+            "visible": true
+        },
+        {
+            "name": "wechatID",
+            "showName": "微信号",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "phone",
+            "showName": "手机号",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "format": "buttonVisiable",
+            "name": "bottomButtonsVisiable",
+            "outputButton": false,
+            "batchSignButton": false,
+            "batchCheckButton": false
+        }
+    ],
+    "/userManager": [
+        {
+            "name": "userName",
+            "showName": "用户名",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "wwID",
+            "showName": "旺旺号",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "gender",
+            "showName": "性别",
+            "width": "1px",
+            "format": [
+                {"itemName": "男", "itemValue": "1"},
+                {"itemName": "女", "itemValue": "2"}
+            ],
+            "visible": true
+        },
+        {
+            "name": "taoqiValue",
+            "showName": "淘气值",
+            "width": "1px",
+            "format": [
+                {"itemName": "400", "itemValue": "400"},
+                {"itemName": "401-500", "itemValue": "401-500"},
+                {"itemName": "501-600", "itemValue": "501-600"},
+                {"itemName": "601-800", "itemValue": "601-800"},
+                {"itemName": "801-1000", "itemValue": "801-1000"},
+                {"itemName": "1000以上", "itemValue": "1000以上"}
+            ],
+            "visible": true
+        },
+        {
+            "name": "wechatID",
+            "showName": "微信号",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "phone",
+            "showName": "手机号",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "status",
+            "showName": "状态",
+            "width": "1px",
+            "format": [
+                {"itemName": "正常", "itemValue": "1"},
+                {"itemName": "审核被拒绝", "itemValue": "2"},
+                {"itemName": "拉黑", "itemValue": "3"},
+                {"itemName": "待审核", "itemValue": "5"}
+            ],
+            "visible": true
+        },
+        {
+            "format": "buttonVisiable",
+            "name": "bottomButtonsVisiable",
+            "outputButton": false,
+            "batchSignButton": false,
+            "batchCheckButton": false
+        }
+    ],
+    
+    "/myActivity": [
+        [
+            {
+            "name": "activityType",
+            "showName": "活动类型",
+            "width": "1px",
+            "format": [
+                {"itemName": "当天赏金活动", "itemValue": "1"},
+                {"itemName": "回购赏金活动", "itemValue": "2"}
+            ],
+            "visible": true
+        },
+        {
+            "name": "activityDate",
+            "showName": "活动时间",
+            "width": "1px",
+            "format": "date",
+            "visible": true
+        },
+        {
+            "name": "activitySearchState",
+            "showName": "活动状态",
+            "width": "1px",
+            "format": [
+                {"itemName": "待提交", "itemValue": "1"},
+                {"itemName": "待确认", "itemValue": "2"},
+                {"itemName": "已放弃", "itemValue": "3"},
+                {"itemName": "被驳回", "itemValue": "4"},
+                {"itemName": "已完成|未返款", "itemValue": "5"},
+                {"itemName": "已完成|已返款", "itemValue": "6"}
+            ],
+            "visible": true
+        },
+        {
+            "name": "activityShop",
+            "showName": "活动店铺",
+            "width": "1px",
+            "format": [
+                {"itemName": "店铺1", "itemValue": "1"},
+                {"itemName": "店铺2", "itemValue": "2"}
+            ],
+            "visible": true
+        },
+        {
+            "name": "orderID",
+            "showName": "订单编号",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "wwID",
+            "showName": "旺旺号",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "activityID",
+            "showName": "活动ID",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "productID",
+            "showName": "宝贝ID",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "name": "jdID",
+            "showName": "京东用户",
+            "width": "1px",
+            "format": "text",
+            "visible": true
+        },
+        {
+            "format": "buttonVisiable",
+            "name": "bottomButtonsVisiable",
+            "outputButton": false,
+            "batchSignButton": false,
+            "batchCheckButton": false
+        }
+    ],
+        [
+            {
+                "name": "activityType",
+                "showName": "活动类型",
+                "width": "1px",
+                "format": [
+                    {"itemName": "当天赏金活动", "itemValue": "1"},
+                    {"itemName": "回购赏金活动", "itemValue": "2"}
+                ],
+                "visible": true
+            },
+            {
+                "name": "activityDate",
+                "showName": "活动时间",
+                "width": "1px",
+                "format": "date",
+                "visible": true
+            },
+            {
+                "name": "activitySearchState",
+                "showName": "活动状态",
+                "width": "1px",
+                "format": [
+                    {"itemName": "发布中", "itemValue": "1"},
+                    {"itemName": "已完结", "itemValue": "2"},
+                    {"itemName": "已停止", "itemValue": "3"}
+                ],
+                "visible": true
+            },
+            {
+                "name": "activityShop",
+                "showName": "活动店铺",
+                "width": "1px",
+                "format": [
+                    {"itemName": "店铺1", "itemValue": "1"},
+                    {"itemName": "店铺2", "itemValue": "2"}
+                ],
+                "visible": true
+            },
+            {
+                "name": "activityGroupID",
+                "showName": "活动组ID",
+                "width": "1px",
+                "format": "text",
+                "visible": true
+            },
+            {
+                "format": "buttonVisiable",
+                "name": "bottomButtonsVisiable",
+                "outputButton": false,
+                "batchSignButton": false,
+                "batchCheckButton": false
+            }
+        ]
+    ]
+   
+}
