@@ -223,26 +223,13 @@
             "visible": true
         },
         {
-            "name": "activityDate",
+            "name": "rangeTime",
             "showName": "活动时间",
             "width": "1px",
-            "format": "date",
+            "format": "dateRange",
             "visible": true
         },
-        {
-            "name": "activitySearchState",
-            "showName": "活动状态",
-            "width": "1px",
-            "format": [
-                {"itemName": "待提交", "itemValue": "1"},
-                {"itemName": "待确认", "itemValue": "2"},
-                {"itemName": "已放弃", "itemValue": "3"},
-                {"itemName": "被驳回", "itemValue": "4"},
-                {"itemName": "已完成|未返款", "itemValue": "5"},
-                {"itemName": "已完成|已返款", "itemValue": "6"}
-            ],
-            "visible": true
-        },
+        
         {
             "name": "activityShop",
             "showName": "活动店铺",
@@ -281,13 +268,7 @@
             "format": "text",
             "visible": true
         },
-        {
-            "name": "jdID",
-            "showName": "京东用户",
-            "width": "1px",
-            "format": "text",
-            "visible": true
-        },
+        
         {
             "format": "buttonVisiable",
             "name": "bottomButtonsVisiable",
@@ -353,3 +334,4 @@
     ]
    
 }
+

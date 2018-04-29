@@ -93,7 +93,7 @@
 					@click="handleChange(scope.$index, scope.row, 5)">编辑</el-button>
 
 					<el-button
-					v-if="scope.row.state === '正常'"
+					v-if="scope.row.state.value === 1"
 					size="mini"
 					type="danger"
 					@click="handleChange(scope.$index, scope.row, 3)">拉黑</el-button>

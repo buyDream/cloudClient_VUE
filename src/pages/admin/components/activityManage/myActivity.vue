@@ -24,6 +24,11 @@
                 </div>
             </div>
 
+            <Pagination 
+                @pageChange="handlePageChange"
+                :totalPage="totalPage">
+            </Pagination>
+
             <RejectView :rejectVisiable="rejectVisiable" @confirmReject="rejectConfirm" @closeView="closeView"></RejectView>
 
         </div>
@@ -48,6 +53,8 @@ import Search from '../searchBar.vue'
 import TableView from './subCompoents/activityTableView.vue'
 import GroupTableView from './subCompoents/activityTableViewGroup.vue'
 import RejectView from '../utility/alertView/rejectView.vue'
+import Pagination from '../pagination.vue'
+
 import { GetMyActivity,ChangeActivityStatus, GetActivityGroups, StopActivityGroups } from "../../../../api/user";
 // 初始化绑定值不对，是因为radioG，的值并不等于‘全部’
 export default {
@@ -61,9 +68,26 @@ export default {
             parms: {},
             rejectVisiable: false,
             clickedActivityID: '',
+            totalPage: 1,
         }
     },
+
+    created() {
+        this.p_myActivityDatas();
+    },
+
+    // updated() {
+    //     console.log('-----');
+        
+    //     this.p_myActivityDatas(this.parms);
+    // },
+
     methods: {
+        handlePageChange(val) { // 分页变化
+            console.log('当天页数多少条:', val.sizePage);
+            this.updateTableView(val, true);
+        },
+
         changeTopItem(change) {
             if (this.isActived !== change) {
                 this.isActived = !this.isActived;
@@ -80,8 +104,10 @@ export default {
 
 //  搜索条件改变
         updateTableView(parms, search) {
-            this.parms = Object.assign(parms, this.parms);
+            console.log('before当天页数多少条:', parms.sizePage);
+            Object.assign(this.parms, parms);
             console.log('updateTableView parms: ', parms.activitySearchState);
+            console.log('after当天页数多少条:', parms.sizePage);
             if (search) {
                 if (this.isActived) {
                     this.p_myActivityDatas(this.parms);
@@ -99,10 +125,12 @@ export default {
         },
 
 // 我的活动
-        p_myActivityDatas(parms) {
+        p_myActivityDatas(val) {
             this.tableData.length = 0;
+            var parms = val === undefined ? {} : val;
             GetMyActivity(parms, (data) => {
                 // console.log(data.results);
+                this.totalPage = data.all_page;
                 this.selections = [
                     {title: '全部', value: data.all_count, status: ''},
                     {title: '待提交', value: data.submit_count, status:1},
@@ -124,7 +152,7 @@ export default {
                             productLink: element.baby_link,
                             shopName: element.shop_name,
                             keywords: element.keyword.join(),
-                            filter: element.late_time_start + '-' + element.late_time_end,
+                            filter: element.late_time_start.text + '-' + element.late_time_end.text,
                         // },
                         wwID: element.wangwang,
                         orderID: element.bill_id,
@@ -150,12 +178,12 @@ export default {
             
             if (parms === undefined) parms = {};
             GetActivityGroups(parms, (data) => {
+                this.totalPage = data.all_page;
                 var resultsArr = data.results;
                 if (resultsArr.length === 0) {
                     this.tableGroupData = [];
                     return;
                 }
-
                 resultsArr.forEach(element => {
                     var model = {
                         activityGroupID: element.id,
@@ -164,10 +192,10 @@ export default {
                         productLink: element.baby_link,
                         shopName: element.shop_name,
                         keywords: element.keyword.join(),
-                        filter: element.late_time_start + '-' + element.late_time_end,
+                        filter: element.late_time_start.text + '-' + element.late_time_end.text,
                         wwID: element.wangwang,
                         orderID: element.bill_id,
-                        activityStatus: element.state,
+                        activityStatus: element.state.text,
                         activityDate: element.date,
                         totalActivities: element.count,
 
@@ -262,16 +290,10 @@ export default {
     
     },
     components: {
-        Search, TableView, GroupTableView, RejectView
+        Search, TableView, GroupTableView, RejectView, Pagination
     },
 
-    updated() {
-        console.log('changeValue: ', this.radioG);
-    },
-
-    mounted() {
-        this.p_myActivityDatas(this.parms);
-    }
+    
 }
 </script>
 

@@ -13,20 +13,11 @@
                 <TableView :tableData="results" type="auditor" @handleSelectionChange="batchProcessingData" @changeItemStatus="changeItemStatus"></TableView>
             </div>
             
-            <div class="bottomPagination">
+            <Pagination 
+                @pageChange="handlePageChange"
+                :totalPage="totalPage">
+            </Pagination>
 
-            <!-- next-text="下一页 >" -->
-                <el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    background
-                    :current-page="currentPage"
-                    :page-sizes="[10, 20, 30, 40]"
-                    :page-size="10"
-                    layout="sizes, prev, pager, next, total, jumper"
-                    :total="resultTotal">
-                </el-pagination>
-            </div>
     	</div>
     </div>
 </template>
@@ -34,19 +25,21 @@
 <script>
 import Search from '../searchBar.vue'
 import TableView from '../utility/tableView.vue'
+import Pagination from '../pagination.vue'
 import { ShowUserDetail, ChangeUserState } from "../../../../api/user";
+
 export default {
     data() {
         return {
             userIds: [],
             operateStatus: '批量操作',
             results: [],
-            resultTotal: '',
-            currentPage: 1,
+            totalPage: 1,
         }
     },
-    components: {
-        Search, TableView
+    
+    created() {
+        this.getData();
     },
 
     methods: {
@@ -66,6 +59,10 @@ export default {
 
         changeItemStatus(val) {
             this.changeUserState(val);
+        },
+
+        handlePageChange(val) {
+            this.getData(val);
         },
 
         selectorChanged() {
@@ -94,23 +91,23 @@ export default {
             ShowUserDetail(val === undefined ? {} : val , true, (data) => {
                 this.results = data.results;
                 console.log('results data: ', this.results);
+                this.totalPage = data.all_page;
             }, (err) => {
                 console.log(err);
             });
         }
     },
 
-    created() {
-        this.getData();
-    }
+   
 
+    components: {
+        Search, TableView, Pagination
+    },
 }
 </script>
 
 <style>
-/* .mainPage .contenArea {
-    padding: 10px 10px 10px 30px;
-} */
+
 
 </style>
 

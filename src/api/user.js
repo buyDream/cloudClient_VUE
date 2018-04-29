@@ -39,7 +39,6 @@ export function ShowBindingShop(success, error, complete) {
 export function AddBindingShop(shopType, shopName, wwID, success, failed, error, complete) {
     post('apis/api/Shop/add', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'name': shopName,
         'shop_type': shopType,
         'manager': wwID
@@ -49,7 +48,6 @@ export function AddBindingShop(shopType, shopName, wwID, success, failed, error,
 export function ModifyBindingShop(parms, success, failed, error, complete) {
     post('apis/api/Shop/edit', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'shop_id': parms.activityShop,
         'manager': parms.changeWwID,
         'wechat': parms.wechat,
@@ -62,14 +60,12 @@ export function ModifyBindingShop(parms, success, failed, error, complete) {
 export function GetProfile(success, failed, error, complete) {
     post('apis/api/Merchant/show', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
     }, success,failed, error, complete)
 }
 
 export function ModifyProfile(parms, success, failed, error, complete) {
     post('apis/api/Merchant/edit', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'username': parms.userName,
         'wechat': parms.wechatID,
         'mobile': parms.phone,
@@ -81,12 +77,36 @@ export function ModifyProfile(parms, success, failed, error, complete) {
     }, success,failed, error, complete)
 }
 
+// 商家发布通知
+export function SendNotification(params, success, failed, error, complete) {
+    post('apis/api/Merchant/sendMessage', {
+        'token': User.state.token,
+        'title': params.notificationTitle,
+        'content': params.notificationMsg
+    }, success,failed, error, complete)
+}
+
+export function EditNotification(params, success, failed, error, complete) {
+    post('apis/api/Merchant/editMessage', {
+        'token': User.state.token,
+        'merchant_message_id': params.notificationID,
+        'title': params.notificationTitle,
+        'content': params.notificationMsg
+    }, success,failed, error, complete)
+}
+
+// 商家通知列表
+export function MerchantNotificationList( success, failed, error, complete) {
+    post('apis/api/Merchant/showMessage', {
+        'token': User.state.token,
+    }, success,failed, error, complete)
+}
+
 
 // 发布活动
 export function CheckMallLink(link, success, failed, error, complete) {
     post('apis/api/Task/getBaby', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'baby_link': link
     }, success,failed, error, complete)
 }
@@ -96,14 +116,12 @@ export function CheckMallLink(link, success, failed, error, complete) {
 export function GetActivityModelsRelease(activityType, success, failed, error, complete) {
     post('apis/api/Task/taskModel', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'type': activityType
     }, success,failed, error, complete)
 }
 export function GetActivityModels(activityModelID, success, failed, error, complete) {
     post('apis/api/Task/showModel', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'task_model_id': activityModelID
     }, success,failed, error, complete)
 }
@@ -111,16 +129,14 @@ export function GetActivityModels(activityModelID, success, failed, error, compl
 export function ShowActivityModelDetail(activityModelID, success, failed, error, complete) {
     post('apis/api/Bill/showDetails', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'task_bill_id': activityModelID
     }, success,failed, error, complete)
 }
 
 
-export function GetShopName( success, failed, error, complete) {
-    post('apis/api/Bill/shopName', {
+export function GetShopName(success, failed, error, complete) {
+    post('apis/api/Shop/shopName', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
     }, success,failed, error, complete)
 }
 
@@ -128,7 +144,6 @@ export function ReleaseActivity(parms, saved, success, failed, error, complete) 
     if (parms.latestTimes === undefined) parms.latestTimes = [];
     post('apis/api/Task/add', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
 
         'type': parms.activityType,
 
@@ -171,7 +186,6 @@ export function ReleaseActivity(parms, saved, success, failed, error, complete) 
 export function DeleteActivityModel(activityModelID, success, failed, error, complete) {
     post('apis/api/Task/delModel', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'task_model_id': activityModelID
     }, success,failed, error, complete)
 }
@@ -179,20 +193,24 @@ export function DeleteActivityModel(activityModelID, success, failed, error, com
 // ----- 活动管理 -------
 // 我的活动
 export function GetMyActivity(parms, success, failed, error, complete) {
+    if (parms.rangeTime === undefined) parms.rangeTime = [];
     post('apis/api/Bill/show', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'type': parms.activityType,
-        'date': parms.activityDate * 0.001,
+        // 'date': parms.activityDate * 0.001,
         'state': parms.activityStatus,
         'search_state': parms.activitySearchState,
-        'shop_name': parms.activityShop,
+        'shop_id': parms.activityShop,
         'id': parms.activityID, // 活动组ID
         'bill_id': parms.orderID,
         'wangwang': parms.wwID,
         // 'task_id': parms.activityGroupID, // 活动组id
         'baby_id': parms.productID,
         'jingdong': parms.jdID,
+        'page': parms.currentPage,
+        'list': parms.sizePage,
+        'start_date': parms.rangeTime[0] * 0.001,
+        'end_date': parms.rangeTime[1] * 0.001,
     }, success,failed, error, complete)
 }
 
@@ -203,7 +221,6 @@ export function ChangeActivityStatus(parms, success, failed, error, complete) {
     console.log('botton clickedActivityID', parms.activityID);
     post('apis/api/Bill/state', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'type': parms.activityStatus,
         'id': parms.activityID,
         'reject_reason': parms.rejectReason
@@ -214,12 +231,13 @@ export function ChangeActivityStatus(parms, success, failed, error, complete) {
 export function GetActivityGroups(parms, success, failed, error, complete) {    
     post('apis/api/Task/show', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'type': parms.activityType,
         'date': parms.activityDate * 0.001,
-        'shop_name': parms.activityShop,
+        'shop_id': parms.activityShop,
         'id': parms.activityGroupID,
-        'state': parms.activitySearchState
+        'state': parms.activitySearchState,
+        'page': parms.currentPage,
+        'list': parms.sizePage,
     }, success,failed, error, complete)
 }
 
@@ -227,7 +245,6 @@ export function GetActivityGroups(parms, success, failed, error, complete) {
 export function StopActivityGroups(parms, success, failed, error, complete) {
     post('apis/api/Task/stop', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'id': parms.groupID
     }, success,failed, error, complete)
 }
@@ -247,7 +264,9 @@ export function ShowAccoutDetail(parms, success, failed, error, complete) {
         'wechat': parms.wechatID,
         'task_id': parms.activityGroupID,
         'task_bill_id': parms.activityID,
-        'shop_name': parms.activityShop
+        'shop_id': parms.activityShop,
+        'page': parms.currentPage,
+        'list': parms.sizePage,
     }, success,failed, error, complete)
 }
 
@@ -256,16 +275,13 @@ export function ShowAccoutDetail(parms, success, failed, error, complete) {
 export function ShowUserOverview(success, failed, error, complete) {
     post('apis/api/User/overview', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
     }, success,failed, error, complete)
 }
 
 // status: true用户审核  or 用户管理
 export function ShowUserDetail(parms, status, success, failed, error, complete) {
-    console.log('ShowUserDetail----- aval: ', parms.phone);
     post('apis/api/User/show', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'stay': status,
         'openid': parms.openID, //用户id
         'nickname': parms.userName,
@@ -275,20 +291,21 @@ export function ShowUserDetail(parms, status, success, failed, error, complete) 
         'wechat': parms.wechatID,
         'mobile': parms.phone,
         'state': parms.status, // 用户状态 --- 正常、拉黑、待审核eg。
+        'page': parms.currentPage,
+        'list': parms.sizePage,
     }, success,failed, error, complete)
 }
 
 export function EditUserInfo(parms, success, failed, error, complete) {
     post('apis/api/User/edit', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'sex': parms.gender,
         'mobile': parms.phone,
         'wangwang': parms.wwID,
         'credit': parms.taoqiValue,
         'late_place_time': parms.latestOrder * 0.001,
         'openid': parms.openID,
-        'shop_name': parms.shopName
+        'shop_id': parms.shopName
     }, success,failed, error, complete)
 }
 
@@ -296,7 +313,6 @@ export function EditUserInfo(parms, success, failed, error, complete) {
 export function ChangeUserState(parms, success, failed, error, complete) {
     post('apis/api/User/state', {
         'token': User.state.token,
-        // 'merchant_id': User.state.merchant_id,
         'id': parms.buyerID,
         'type': parms.state, // 用户状态 --- 正常、拉黑、待审核eg。
     }, success,failed, error, complete)
@@ -313,3 +329,5 @@ export function ChangeUserState(parms, success, failed, error, complete) {
 //         }
 //     })
 // })
+
+// profile

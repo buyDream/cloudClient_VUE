@@ -19,6 +19,12 @@ export default {
 .item {
     margin-left: 30px;
     width: 10%;
-	display: inline-block;
+    display: inline-block;
+    text-align: center;
+}
+
+.item .valueTitle {
+    font-size: 40px;
+    color:darkturquoise;
 }
 </style>

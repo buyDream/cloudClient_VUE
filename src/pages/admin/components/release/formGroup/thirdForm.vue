@@ -74,7 +74,7 @@
 
         <div class="imem">
             <div class="itemTitle">定向店铺人群：</div>
-            <Selector @shopNameChanged="shopNameChanged"></Selector>
+            <Selector @shopNameChanged="shopNameChanged" :originValue="form.directionalShop"></Selector>
         </div>
 
         <div class="item">
@@ -143,11 +143,6 @@ export default {
             value: ''
         }
     },
-    // computed: {
-    //     keywordsNumber() {
-    //         return this.form.keywords.length > 1 ? this.form.keywords.length : 1;
-    //     }
-    // },
     components: {
       Selector, RadioOptional, MultipleOptional
     },
@@ -156,6 +151,7 @@ export default {
         form: function(newValue, oldValue) {
             this.keyword = newValue.keywords;
             this.keywordsNumber = this.keyword.length;
+            
         }
     },
 
@@ -241,7 +237,7 @@ export default {
 
     },
     updated() {
-        console.log('init inshop type: ', this.value);
+        // console.log('init inshop type: ', this.value);
         this.$emit('formParmsChange', this.form, 2);
     }
 

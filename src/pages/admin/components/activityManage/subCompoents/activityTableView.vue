@@ -80,7 +80,7 @@
 
     <el-table-column
 	  align="center"
-      prop="activityStatus"
+      prop="activityStatus.text"
       label="活动状态">
     </el-table-column>
 
@@ -102,13 +102,13 @@
 		<el-button
 			size="mini"
 			type="success"
-			:disabled="scope.row.activityStatus.indexOf('已完成') !== -1"
+			v-if="scope.row.activityStatus.value === 2"
 			@click="handleReject(scope.$index, scope.row, true)">确认</el-button>
 
 		<el-button
 			size="mini"
 			type="warning"
-			:disabled="scope.row.activityStatus === '被驳回'"
+			v-if="scope.row.activityStatus.value === 2"
 			@click="handleReject(scope.$index, scope.row, false)">驳回</el-button>
 			
 		<!-- <el-button

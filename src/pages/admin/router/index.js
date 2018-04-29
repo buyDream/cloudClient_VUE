@@ -10,6 +10,7 @@ import HomePage from '../components/release/home.vue'
 import ActivityReport from '../components/activityReport/activityReport.vue'
 import Overview from '../components/userDetail/overview.vue'
 import Profile from '../components/profile/profile.vue'
+import NotificationRecord from '../components/profile/notificationRecord.vue'
 import AccountInfo from '../components/accountInfo/accountInfo.vue'
 import Auditor from '../components/userDetail/auditor.vue'
 import Manager from '../components/userDetail/manager.vue'
@@ -71,6 +72,15 @@ const router = new Router({
 						requireAuth: true,
 					},
 				},
+				{
+					name: 'notificationRecord',
+					path: '/notificationRecord',
+					component: NotificationRecord,
+					meta: {
+						requireAuth: true,
+					},
+				},
+
 
 				{
 					path: '/test',

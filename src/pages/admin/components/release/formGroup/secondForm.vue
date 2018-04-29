@@ -6,7 +6,7 @@
                     <div class="itemTitle is-required">
                         核对宝贝链接：
                     </div>
-                    <el-input size="media" class="tradeLink" style="width: 50%" placeholder="例如：https://cn.vuejs.org/v2/guide/events.html" v-model="form.productLink"></el-input>
+                    <el-input size="media" class="tradeLink" style="width: 35%" placeholder="例如：https://cn.vuejs.org/v2/guide/events.html" v-model="form.productLink"></el-input>
                     <el-button type="danger" @click="checkLink">核对</el-button>
                     <span class="redText">（输入链接后请点击核对按钮，核对成功后才能进行下一步操作）</span>
                 </el-form-item>
@@ -47,7 +47,7 @@
                             宝贝主图：
                         </div>
                         <el-upload :disabled="checked" class="avatar-uploader" action="#" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload" style="width: 20%; display:inline-block">
-                            <img v-if="form.mainPicUrl" :src="form.mainPicUrl" class="avatar">
+                            <img v-if="form.mainPicUrl"  class="avatar" v-lazy="form.mainPicUrl">
                             <i v-else class="el-icon-plus avatar-uploader-icon"><span class="imgMsg">请上传宝贝主图</span></i>
                         </el-upload>
                     </div>

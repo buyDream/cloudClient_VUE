@@ -37,7 +37,7 @@ export default {
     },
 
     updated() {
-        console.log('price: ', this.modelItem.price);
+        // console.log('price: ', this.modelItem.price);
         
     }
 }

@@ -13,20 +13,10 @@
                 <TableView :tableData="results" type="manager" :searchParms="parms" @changeItemStatus="changeItemStatus" @handleSelectionChange="batchProcessingData"></TableView>
             </div>
             
-            <div class="bottomPagination">
-
-            <!-- next-text="下一页 >" -->
-                <el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    background
-                    :current-page="currentPage"
-                    :page-sizes="[10, 20, 30, 40]"
-                    :page-size="10"
-                    layout="sizes, prev, pager, next, total, jumper"
-                    :total="resultTotal">
-                </el-pagination>
-            </div>
+            <Pagination 
+                @pageChange="handlePageChange"
+                :totalPage="totalPage">
+            </Pagination>
 
             <EditeBuyerView :rejectVisiable="rejectVisiable" @confirmSubmit="confirmSubmit" :dataSource="buyerItemInfo" @closeView="closeView"></EditeBuyerView>
 
@@ -38,34 +28,29 @@
 import Search from '../searchBar.vue'
 import TableView from '../utility/tableView.vue'
 import EditeBuyerView from '../utility/alertView/editBuyerInfo.vue'
-// import { ShowUserDetail } from "../../../../api/user";  
+import Pagination from '../pagination.vue'
+
 import { EditUserInfo, ShowUserDetail, ChangeUserState, login } from "../../../../api/user";
 export default {
     data() {
         return {
             parms: {},
-            currentPage: 0,
-            resultTotal: 12,
-            handleSizeChange: '',
-            handleCurrentChange: '',
             rejectVisiable: false,
             results: [],
             userIds: [],
             operateStatus: "批量操作",
-            buyerItemInfo: {}
+            buyerItemInfo: {},
+            totalPage: 1,
         }
     },
     components: {
-        Search, TableView, EditeBuyerView
+        Search, TableView, EditeBuyerView, Pagination
     },
 
     methods: {
 
         updateTableView(parms, search) {
-            // this.parms = Object.assign(parms, this.parms);
-            
             if (search) {
-                console.log('updateTableView parms: ', parms.phone);
                 this.getData(parms);    
             }
         },
@@ -74,6 +59,9 @@ export default {
         //     console.log('来了吗', parms.phone);
             
         // },
+        handlePageChange(val) {
+            this.getData(val);
+        },
 
         batchProcessingData(val) {
             this.userIds = val;
@@ -85,7 +73,7 @@ export default {
                     buyerID: this.userIds,
                     state: this.operateStatus    
                 }
-                console.log('params: ', params);
+                // console.log('params: ', params);
                 this.p_changeUserState(params);
                 this.operateStatus = '批量操作';
             }
@@ -108,8 +96,6 @@ export default {
                 this.getData();
                 this.rejectVisiable = false;
             }, (failed) => {
-                // console.log('-------');
-                
                 this.$alert(failed);
             });
         },
@@ -132,10 +118,12 @@ export default {
         },
 
         getData(val) {
-            console.log('updateTableView aval: ', val);
-            ShowUserDetail(val === undefined ? {} : val, false, (data) => {
+            console.log('params: ----------');
+            var parms = val === undefined ? {} : val;
+            ShowUserDetail(parms, false, (data) => {
+                console.log('params: ', data);
                 this.results = data.results;
-                console.log('data: ', this.results);
+                this.totalPage = data.all_page;
             }, (err) => {
                 console.log(err);
             });
@@ -146,7 +134,6 @@ export default {
             this.rejectVisiable = false;
         }
         
-
     },
 
     created() {

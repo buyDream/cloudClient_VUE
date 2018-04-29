@@ -4,10 +4,10 @@
             绑定店铺
         </div>
         <div class="contenArea">
-            <div>
+            <!-- <div>
                 注意：每个商家可免费绑定2个店铺，不限于天猫京东淘宝，增加绑定店铺及更换店铺绑定的话需要二位支付金额开头哦
                 <a href="#">QQ在线联系</a>
-            </div>
+            </div> -->
             <TableView :tableData="dataSource"></TableView>
 
             <div>

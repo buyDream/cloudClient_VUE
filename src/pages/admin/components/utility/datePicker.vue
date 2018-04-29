@@ -13,7 +13,11 @@
 <script>
 export default {
   props: ['value'],
- 
+  watch: {
+    value(newValue, oldValue) {
+      this.modelValue = newValue;
+    }
+  },
     data() {
       return {
         modelValue: '',

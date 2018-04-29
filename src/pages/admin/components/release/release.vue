@@ -20,7 +20,7 @@
                         <el-collapse v-model="activitySigins" @change="handleChange">
                             <SecondForm :checked="checked" @formParmsChange="formParmsChange" @checkSuccessed="checkSuccessed" :form="baseFormParms"></SecondForm>
                             <ThirdForm :checked="checked" @formParmsChange="formParmsChange" :form="activityTypeFormParms"></ThirdForm>
-                            <FourthForm :checked="checked" @formParmsChange="formParmsChange" :form="activityReleaseTimeParms"></FourthForm>
+                            <FourthForm :checked="checked" @formParmsChange="formParmsChange" :form="activityReleaseTimeParms" :group="activityType === 2"></FourthForm>
                         </el-collapse>
 
                         <el-button v-if="editeModel === false" type="warning" @click="confirmModelTitleViewVisiable = true;" >发布并保存模板</el-button>
@@ -137,7 +137,7 @@ export default {
             confirmModelReleaseViewVisiable: false,
             activitySigins: ['2','3','4'],
             options: [],
-            templateID: '',
+            templateID: {},
             // ----------- 分割线 ---------- //
             checked: false,
             baseFormParms: {
@@ -222,7 +222,7 @@ export default {
                 this.activityReleaseTimeParms = parms;
             }
 
-            console.log('哎！！！！！');
+            // console.log('哎！！！！！');
             
         },
 
@@ -243,30 +243,30 @@ export default {
                     mainPicUrl: currentModel.baby_img,
                     directImgUrl: currentModel.baby_direct_img,
                     price: currentModel.price,
-                    entrance: currentModel.inlet
+                    entrance: currentModel.inlet.value
                 };
                 this.activityTypeFormParms = {
-                    inShopType: currentModel.inlet_type,
+                    inShopType: currentModel.inlet_type.value,
                     keywords: currentModel.keyword,
                     taoCommand: currentModel.password,
                     SKUImg: currentModel.sku_img,
                     cardConImg: currentModel.card_img,
-                    weight: currentModel.weighting,
-                    latestTimes: [currentModel.late_time_start * 1000, currentModel.late_time_end * 1000],
+                    weight: currentModel.weighting.value,
+                    latestTimes: [currentModel.late_time_start.value * 1000, currentModel.late_time_end.value * 1000],
                     attentionMsg: currentModel.account,
                     QRCode: currentModel.qr_code,
-                    directionalShop: '-------'
+                    directionalShop: parseInt(currentModel.orientation_shop)
                 };
                 
                 this.activityReleaseTimeParms = {
                     releaseNum: currentModel.count,
-                    releaseDate: currentModel.date_time_stamp * 1000,
+                    releaseDate: currentModel.date.value * 1000,
                     releaseTitle: currentModel.task_title,
-                    payDate: currentModel.payment_time,
+                    payDate: currentModel.payment_time * 1000,
                     reward: currentModel.reward,
                     presentImgUrl: currentModel.gift_img,
                     presentContent: currentModel.gift_text,
-                    releaseTimes: currentModel.time_slot,
+                    releaseTimes: currentModel.slot_id.text,
                 };
                 
             }, (error) => {
@@ -276,7 +276,7 @@ export default {
 
 //      保存、发布、eg，弹出后
         convertModelTitle(title) {
-            console.log('title length: ', title);
+            
             console.log('activityTitle: ', this.activityTitle);
             if ((typeof(title) === 'string' && title.length !== 0) || title === true) {
                 console.log('pandian zhengque !!!!!');
@@ -288,12 +288,15 @@ export default {
                     saveType = 3;
                 } else {
                     saveType =  this.confirmModelTitleViewVisiable ? 2 : 1;
-                    parms.activityID = this.templateID.value;
-                }
-                
-                ReleaseActivity(parms, saveType, (data) => {
-                    console.log('data:', data);
                     
+                }
+                parms.activityID = this.templateID.value;
+                console.log('parms.activityID: ', parms.activityID);
+                ReleaseActivity(parms, saveType, (data) => {
+                    // console.log('data:', data);
+                    const alertMsg = saveType === 1 ? '发布成功' : '发布并保存成功'; 
+                    this.$message.success(alertMsg);
+                    this.$router.go(-1);
                 }, (error) => {
                     alert(error)
                 });
@@ -305,14 +308,18 @@ export default {
 
 //  初始化
     mounted() {
-        console.log('current activityID: ', this.$route.params.activityID);
+        // this.activityReleaseTimeParms.repurchase = this.activityType === 2;
+        
         if (this.$route.params.activityID !== undefined) {
             this.templateID = {
                     value: this.$route.params.activityID,
                     label: this.$route.params.activityTitle
-                };;
+                };
+            // this.templateID.value = this.$route.params.activityID;
+            // this.templateID.label = this.$route.params.activityTitle;
+                console.log('parms.activityID: ', this.templateID.value);
             this.editeModel = true;
-            this.selectModel();
+            this.selectModel(this.templateID.value);
         }
         
         this.options.length = 0;

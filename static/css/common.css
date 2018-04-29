@@ -22,6 +22,13 @@
     float: right;
 }
 
+.clear-float:after,
+.clear-float:before {
+  content: '';
+  display: block;
+  clear: both;
+}
+
 .inlineBlock {
     display: inline-block;
 }
@@ -41,7 +48,7 @@
 }
 
 .mainPage .contenArea {
-    padding: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 20px;
 }
 
 .redText {

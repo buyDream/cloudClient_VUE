@@ -68,10 +68,10 @@
         </div>
         </template>
         <template v-if="!activityGroup && detailType === 2">
-        <div class="footer">
-            <el-button type="success">确认</el-button>
-            <el-button type="info">驳回</el-button>
-        </div>
+            <div class="footer">
+                <el-button type="success">确认</el-button>
+                <el-button type="info">驳回</el-button>
+            </div>
         </template>
         </div>
     </div>
@@ -162,13 +162,14 @@ export default {
 
         p_myActivityDetail(params) {
             const currentAcitvityID = params.activityID;
-            if (params.type === '被驳回') {
+            const typeText =  params.type.text;
+            if (typeText === '被驳回') {
                 this.detailType = 4;
-            } else if (params.type.indexOf('已完成') !== -1) {
+            } else if (typeText.indexOf('已完成') !== -1) {
                 this.detailType = 5;
-            } else if (params.type.indexOf('待确认') !== -1) {
+            } else if (typeText.indexOf('待确认') !== -1) {
                 this.detailType = 2;
-            } else if (params.type.indexOf('待提交') !== -1) {
+            } else if (typeText.indexOf('待提交') !== -1) {
                 this.detailType = 1;
             }
 
@@ -183,52 +184,52 @@ export default {
 
         p_getCommonInfo(currentModel) {
             var weight = '';
-                currentModel.weighting.forEach(element => {
-                    if (element === '1') {
+                currentModel.weighting.value.forEach(element => {
+                    if (element === 1) {
                         weight += '收藏宝贝 '; 
-                    } else if (element === '2') {
+                    } else if (element === 2) {
                         weight += '加购物车 ';
-                    } else if (element === '3') {
+                    } else if (element === 3) {
                         weight += '分享二维码 ';
-                    } else if (element === '4') {
+                    } else if (element === 4) {
                         weight += '分享淘口令 ';
-                    } else if (element === '5') {
+                    } else if (element === 5) {
                         weight += '关注店铺 ';
-                    } else if (element === '6') {
+                    } else if (element === 6) {
                         weight += '领优惠券 ';
                     } else {
                         weight += '';
                     }
                 });
+                console.log('weight-------:', weight);
                 
                 this.detailMsg = {
                     activityID: currentModel.task_id,
                     activityGroupID: currentModel.id,
-                    releaseDateText: currentModel.date,
+                    releaseDateText: currentModel.date.text,
                     
                     weight: weight,
                     attentionMsg: currentModel.account,
                     releaseTimes: currentModel.time_slot,
                 };
                 const model = {
-                        entrance: currentModel.inlet,
+                        entrance: currentModel.inlet.text,
                         shopBossID: currentModel.shop_name,
                         productLink: currentModel.baby_link,
                         keywords: currentModel.keyword,
-                        inShopType: currentModel.inlet_type,
+                        inShopType: currentModel.inlet_type.text,
                         mainPicUrl: currentModel.baby_img,
-                        // latestTimes: this.convertTime(currentModel.late_time_start )+ '-' + this.convertTime(currentModel.late_time_end),
-                        latestTimes: currentModel.late_time_start + '-' + currentModel.late_time_end,
+                        latestTimes: currentModel.late_time_start.text + '-' + currentModel.late_time_end.text,
                         presentImgUrl: currentModel.gift_img,
 
                         wechatID: currentModel.wechat,
                         wwID: currentModel.wangwang,
                     
-                        activityType: currentModel.type,
+                        activityType: currentModel.type.text,
                         
                         price: currentModel.price,
                         totalPrice: currentModel.all_price,
-                        activityStatus: currentModel.task_bill_state === undefined  ? currentModel.state : currentModel.task_bill_state,
+                        activityStatus: currentModel.task_bill_state === undefined  ? currentModel.state.text : currentModel.task_bill_state.text,
 
                         
                         productTitle: currentModel.baby_title,

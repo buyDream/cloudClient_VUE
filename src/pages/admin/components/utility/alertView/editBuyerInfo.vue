@@ -39,7 +39,7 @@
             </el-form-item>
 
             <el-form-item label="下单店铺：" :label-width="labelWidth">
-                <Selector @shopNameChanged="shopNameChanged" style="width: 100%"></Selector>
+                <Selector @shopNameChanged="shopNameChanged" style="width: 100%" :originValue="form.shopName"></Selector>
             </el-form-item>
 
             <el-form-item label="淘气值：" :label-width="labelWidth">
@@ -82,7 +82,7 @@ export default {
                 wwID: '',
                 taoqiValue: '',
                 latestOrder: '1524644847000',
-                shopName: ''
+                shopName: 9
             },
 
         }
@@ -92,7 +92,7 @@ export default {
         dataSource: function(newValue, oldValue) {
             this.form.taoqiValue = newValue.credit;
             this.form.profileImg = newValue.headimgurl;
-            this.form.shopName = newValue.shop_name;
+            this.form.shopName = newValue.shop_id;
             this.form.gender = newValue.sex === '男' ? 1 : 2;
             this.form.wechatID = newValue.wechat;
             this.form.userName = newValue.nickname;
@@ -100,7 +100,6 @@ export default {
             this.form.phone = newValue.mobile;
             this.form.openID = newValue.openid;
             this.form.latestOrder = newValue.late_place_time * 1000;
-            console.log('性别：', this.form.gender);
             
         }
     },

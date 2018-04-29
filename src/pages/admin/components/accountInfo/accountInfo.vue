@@ -8,22 +8,10 @@
             <div class="tableView">
                 <TableView searchParms="parms" :tableData="results"></TableView>
             </div>
-            
-            <div class="bottomPagination">
-
-            <!-- next-text="下一页 >" -->
-                <el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    background
-                    :current-page="currentPage"
-                    :page-sizes="[10, 20, 30, 40]"
-                    :page-size="10"
-                    layout="sizes, prev, pager, next, total, jumper"
-                    :total="resultTotal">
-                </el-pagination>
-            </div>
-                
+                <Pagination 
+                    @pageChange="handlePageChange"
+                    :totalPage="totalPage">
+                </Pagination>
         </div>
         
 
@@ -34,12 +22,22 @@
 <style>
 
 
-.bottomPagination {
-    padding: 8px 20px 8px 10px;
-}
+
 
 .tableView {
     margin: 0px 15px;
+}
+
+.bottomPagination {
+    padding: 8px 20px 8px 10px;
+    /* text-align: right; */
+}
+.fr .el-pagination {
+    display: inline-block;
+}
+.fr .lastItem {
+    display: inline;
+    padding: 2px 5px;
 }
 </style>
 
@@ -48,24 +46,22 @@
 import FormInput from '../activityReport/formInput.vue'
 import TableView from './accountInfoTableView.vue'
 import Selector from '../utility/selector.vue'
-
+import Pagination from '../pagination.vue'
 import Search from '../searchBar.vue'
 import { ShowAccoutDetail } from "../../../../api/user";
 export default {
 	data() {
     	return {
-			form: null,
-            activeType: null,
-            formLabelAlign: {
-                name: '',
-                region: '',
-                type: ''
-            },
-            timeValue: "",
-			inputSize: 'small',
+			// form: null,
+            // activeType: null,
+            // formLabelAlign: {
+            //     name: '',
+            //     region: '',
+            //     type: ''
+            // },
             parms: {},
-            currentPage: 1,
-            results: []
+            results: [],
+            totalPage: 1,
       }
     },
 
@@ -80,23 +76,29 @@ export default {
                 this.getData(parms);    
             }
         },
+        
+        handlePageChange(val) {
+            this.getData(val);
+        },
 
         getData(val) {
-            ShowAccoutDetail(val === undefined ? {} : val , (data) => {
+            var parms = val === undefined ? {} : val;
+            ShowAccoutDetail(parms , (data) => {
                 this.results = data.results;
-                console.log('results data: ', this.results);
+                this.totalPage = data.all_page;
             }, (err) => {
-                // console.log(err);
                 this.$alert(err)
             });
         }
 	},
 	components: {
-		FormInput, TableView, Selector, Search
+		FormInput, TableView, Selector, Search, Pagination
     },
 
     created() {
         this.getData();
+        console.log('-------------created 资金详情');
+        
 	},
     
     

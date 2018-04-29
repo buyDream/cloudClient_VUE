@@ -25,17 +25,18 @@ export default {
         shopNames: []
       }
     },
-    
-    computed: {
-        // value() {
-        //     return 
-        // }
+
+    watch: {
+        originValue: function(newValue, oldValue) {
+            this.value = this.originValue;
+        }
     },
 
     created() {
-        console.log('create ---- shop native!!!!!!!');
         
-      GetShopName((success) => {
+        console.log('----------created----');
+        
+        GetShopName((success) => {
             console.log('success data:', success.results);
             success.results.forEach(element => {
                 var shopItem = {"itemName": element.name, "itemValue": element.shop_id};
@@ -45,6 +46,11 @@ export default {
         }, (failed) => {
 
         });
+    },
+
+    updated() { 
+        // 这里直接带初始值进来 watch 是为了更新值变化
+        if (this.originValue !== undefined) this.value = this.originValue;
     },
 
     methods: {

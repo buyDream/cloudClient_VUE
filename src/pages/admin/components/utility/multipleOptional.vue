@@ -38,6 +38,7 @@ export default {
 
     methods: {
         didSelect() {
+            console.log('requirement: ', this.requirement);
             this.$emit('selectorOptional', this.requirement);
         }
     },

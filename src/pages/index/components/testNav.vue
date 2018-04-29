@@ -122,7 +122,7 @@ export default {
         logout: function () {
             Cookies.remove('Admin-Token');
             Cookies.remove('Admin-UserName');
-            this.$router.go('/login')
+            this.$router.push('/login');
         }
     },
     created() {

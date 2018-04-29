@@ -203,23 +203,22 @@ export default {
                 var model = {
                     activityID: element.id,
                     modelName: element.model_name,
-                    createdTime: element.date,
-                    activityType: element.type_text,
+                    createdTime: element.date.text,
+                    activityType: element.type.text,
                     activityTypeEnum: element.type,
                     mainImgUrl: element.baby_img,
                     productLink: element.baby_link,
                     shopName: element.shop_name,
                     presentImgUrl: element.gift_img,
                     activityDetail: [
-                        {title: '活动方式',  value: element.inlet_type_text},
-                        {title: '活动平台',  value: element.inlet_text},
+                        {title: '活动方式',  value: element.inlet_type.text},
+                        {title: '活动平台',  value: element.inlet.text},
                         {title: '活动标题',  value: element.task_title},
                         {title: '发布单量',  value: element.count},
-                        {title: '筛选老客户上次购物时间',  value: element.late_time_start + '-' + element.late_time_end},
+                        {title: '筛选老客户上次购物时间',  value: element.late_time_start.text + '-' + element.late_time_end.text},
                         {title: '每单奖励金额', value: element.reward},
                     ]
                 }
-                console.log('create activityType: ', model.activityType);
                 this.activityModels.push(model);
             });
             

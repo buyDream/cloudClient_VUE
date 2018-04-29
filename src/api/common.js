@@ -1,38 +1,7 @@
 import axios from 'axios'
 import {catchError} from './error_handler'
-
-// // http request 拦截器
-// axios.interceptors.request.use(
-//   config => {
-//       if (store.state.token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-//           config.headers.Authorization = `token ${store.state.token}`;
-//       }
-//       return config;
-//   },
-//   err => {
-//       return Promise.reject(err);
-//   });
-
-// // http response 拦截器
-// axios.interceptors.response.use(
-//   response => {
-//       return response;
-//   },
-//   error => {
-//       if (error.response) {
-//           switch (error.response.status) {
-//               case 401:
-//                   // 返回 401 清除token信息并跳转到登录页面
-//                   store.commit(types.LOGOUT);
-//                   router.replace({
-//                       path: 'login',
-//                       query: {redirect: router.currentRoute.fullPath}
-//                   })
-//           }
-//       }
-//       return Promise.reject(error.response.data)   // 返回接口返回的错误信息
-//   });
-
+import Cookies from 'js-cookie';
+import { Message } from 'element-ui';
 export function get(url, params, success, error, complete) {
   axios.get(url, {params: params}).then((response) => {
     if(success){
@@ -86,12 +55,18 @@ export function post(url, data, success, failed, error, complete) {
       console.log('get real data, api: ', url);
       success(response.data.data);
     } else {
-      if (response.data.state_code === 60020) {
-        this.$dispatch('logout');
+      if (response.data.state_code === 60020 || response.data.state_code === 60009) {
+        // this.$dispatch('logout');
+        // this.$message.error(response.data.info);
+        Cookies.remove('Admin-Token');
+        Cookies.remove('Admin-UserName');
+        Message.error(response.data.info);
+        return;
       }
       failed(response.data.info);
     }
   }, (err) => {
+    Message.error('服务器错误！！！')
     catchError(err, error)
   }).then(() => {
     if(complete){

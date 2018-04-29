@@ -12,7 +12,7 @@
                 <template v-if="typeof item.format === 'object'">
                     <el-form-item :label="item.showName + '：'" :key="item.name" style="width:20%">
                         <template v-if="item.name === 'activityShop'">
-                            <Selector @shopNameChanged="shopNameChanged" :originValue="format.activityShop" style="width: 100%"></Selector>
+                            <Selector @shopNameChanged="shopNameChanged"></Selector>
                         </template>
 
                     <template v-else>
@@ -29,9 +29,8 @@
                 </template>
 
                 <template v-if="item.format === 'dateRange'">
-                    <el-form-item :label="item.showName + '：'" :key="item.name" style="width:20%">
+                    <el-form-item :label="item.showName + '：'" :key="item.name">
                         <el-date-picker
-                        style="width: 100%"
                             :size="inputSize"
                             v-model="format[item.name]"
                             type="daterange"
@@ -77,7 +76,7 @@
 </template>
 
 <script>
-import tableFormat from '../../../data/tableFormat.json'
+import tableFormat from '../../data/tableFormat.json'
 import { ShowUserDetail } from "../../../api/user";
 import Selector from './utility/selector.vue'
 export default {
@@ -139,7 +138,7 @@ export default {
         },
 
         clearInput() {
-            console.log('before clear!!!', this.format.activityShop);
+            console.log('before clear!!!', this.format.wwID);
             // Object.assign(this.$data, this.$options.data.call(this));
             this.format.wwID = '';
             this.format.productID = '';
@@ -159,7 +158,7 @@ export default {
             this.format.gender = '';
             this.format.taoqiValue = '';
             this.format.userName = '';
-            console.log('after clear!!!', this.format.activityShop);
+            console.log('after clear!!!', this.format.wwID);
         },
 
         selectDate(val) {
@@ -195,6 +194,7 @@ export default {
     },
     created() {
         // this.defaultData = JSON.parse(JSON.stringify(this.$data));
+       
     },
 
     updated() {
@@ -205,22 +205,6 @@ export default {
     components: {
         Selector
     }
-
-    // {
-    //     "name": "activitySearchState",
-    //     "showName": "活动状态",
-    //     "width": "1px",
-    //     "format": [
-    //         {"itemName": "待提交", "itemValue": "1"},
-    //         {"itemName": "待确认", "itemValue": "2"},
-    //         {"itemName": "已放弃", "itemValue": "3"},
-    //         {"itemName": "被驳回", "itemValue": "4"},
-    //         {"itemName": "已完成|未返款", "itemValue": "5"},
-    //         {"itemName": "已完成|已返款", "itemValue": "6"}
-    //     ],
-    //     "visible": true
-    // },
     
 }
 </script>
-

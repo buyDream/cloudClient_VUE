@@ -80,7 +80,9 @@
     </el-table-column>
     <el-table-column
       align="center"
-      label="接单情况">
+      label="接单情况"
+      min-width="120px"
+      >
 		<template slot-scope="scope">
 			<div class="count">
 				预热中：{{ scope.row.received }}

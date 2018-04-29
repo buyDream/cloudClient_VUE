@@ -25,8 +25,8 @@
       <template slot-scope="scope">
         <el-tag
           size="mini"
-          :type= "scope.row.state === '已返款' ? 'success' : 'warning'"
-          >{{ scope.row.state }}</el-tag>
+          :type= "scope.row.state.value === 6 ? 'success' : 'warning'"
+          >{{ scope.row.state.text }}</el-tag>
       </template>
     </el-table-column>
     <el-table-column

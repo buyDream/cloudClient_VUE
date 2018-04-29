@@ -23,7 +23,7 @@
             <div class="itemTitle is-required">
                 指定下单日期：
             </div>
-            <DatePicker ></DatePicker>
+            <DatePicker @selectDate="selectPlaceOrderDate" :value="form.payDate"></DatePicker>
         </div>
         <div class="item">
             <div class="itemTitle is-required">
@@ -64,12 +64,7 @@
             <div class="timeList">
             <div class="itemTime" v-for="(item, index) in timeBucket" :key="index">
             <div class="title">{{item.title}}</div>
-                <!-- <div class="inputValue"> -->
-                    <!-- <el-input :disabled="!item.disable" type="number" minlength="1" v-bind:value="item['value']" v-on:input="updateValue($event.target.value)" :id="'input' + index"></el-input> -->
-                     <!-- <el-input :disabled="!item.disable" type="text" minlength="1" v-model.number="item['value']" v-on:input="keyPress(item,index)" :id="'input' + index" onkeyup="value=value.replace(/[^\d]/g,'')" @change="ckeckNOWords"></el-input> -->
-                     <!--  -->
-                     <el-input :disabled="!item.disable" type="text" minlength="1" v-model="timeBucket[index]['value']" v-on:input="keyPress(item,index)" :id="'input' + index" onkeyup="value=value.replace(/[^\d]/g,'')" @change="isChangedInput = true"></el-input>
-                <!-- </div> -->
+                <el-input :disabled="!item.disable" type="text" minlength="1" v-model="timeBucket[index]['value']" v-on:input="keyPress(item,index)" :id="'input' + index" onkeyup="value=value.replace(/[^\d]/g,'')" @change="isChangedInput = true"></el-input>
             </div>
             </div>
         </div>
@@ -103,8 +98,8 @@ export default {
             this.timeBucket.forEach(element => {
                 temp = parseInt(element['value']) + temp;
             });
-            console.log('used---:', temp);
-            console.log('leave---:', this.form.releaseNum - temp);
+            // console.log('used---:', temp);
+            // console.log('leave---:', this.form.releaseNum - temp);
             this.tempallocate = this.form.releaseNum - temp;
           return this.form.releaseNum - temp;
             
@@ -112,7 +107,7 @@ export default {
         releaseTimes() {
             var arr = [];
             this.timeBucket.forEach((element) => {
-                console.log('------------');
+                // console.log('------------');
                 
                 arr.push(element['value']);
             });
@@ -122,13 +117,11 @@ export default {
 
     watch: {
         form: function(newValue, oldValue) {
-            console.log('---watch---fourth---timeBucket length---:', this.timeBucket.length);
             for(var i = 0; i < 24; i++) {
                 var key = 'count_' + i;
                 this.timeBucket[i]['value'] = newValue.releaseTimes[key];
 
             }
-            console.log('---watch---fourth--result----:', this.timeBucket[1]);
         },
     },
     components: {
@@ -161,9 +154,12 @@ export default {
         },
 
         selectDate(val) {
-            console.log('val: ', val);
             this.form.releaseDate = val;
-            console.log('update fourth!:', this.form.releaseDate);
+            this.$emit('formParmsChange', this.form, 3); 
+        },
+
+        selectPlaceOrderDate(val) {
+            this.form.payDate = val;
             this.$emit('formParmsChange', this.form, 3); 
         },
 

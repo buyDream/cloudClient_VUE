@@ -4,6 +4,7 @@
     <el-menu 
         router
         text-color="#fff"
+        :default-active="currentIndexSide"
         @select="selectMenu"
         @click="handleSelect">
         <el-menu-item index="logo" disabled>
@@ -85,15 +86,36 @@
 
 import User from '../../../store/user'
 import Cookies from 'js-cookie';
+import { login } from '../../../api/user';
 export default {
 //   name: 'homePage',
+    
     data() {
         return {
             isActive: false,
             showSearchBar: false,
-            userName: User.state.username
+            userName: User.state.username,
+            // currentIndexSide: 'home'
         }
     },
+
+    computed: {
+        path () {
+            return this.$route.path.split('?')[0];
+        },
+
+        currentIndexSide () {
+            console.log('current path: ', this.path);
+            if (this.path === '/intraday' || this.path === '/repurchase') {
+                return 'home';
+            } else if (this.path === '/activityDetail') {
+                return 'myActivity';
+            }
+            return this.path.substring(1, this.path.length)
+            
+        }
+    },
+
     methods: {
         handleSelect(key, keyPath){
             switch(key){
@@ -109,12 +131,8 @@ export default {
         },
         clickItem() {
           console.log('122222');
-        //   this.isActive = true;
+
         },
-    //   closeSubmenu() {
-    //       console.log('1213121331');
-          
-    //   }
         selectMenu(key, keyPath) {
             console.log(keyPath, key);
             
@@ -127,7 +145,9 @@ export default {
     },
     created() {
         var user = this.$store.state.user;
-        this.userName = Cookies.get('Admin-UserName')
+        this.userName = Cookies.get('Admin-UserName');
+        console.log('testNav----------!!!!!!!!!!');
+        
     },
     updated() {
         // console.log('main update');
@@ -177,12 +197,13 @@ a {
 }
 
 .el-menu {
-    background-color: #2F3A53;;
+    background-color: #2F3A53;
     /* padding-bottom: 50px; */
     height: 100%;
 }
 .el-aside {
-    height: 100vh;
+    min-height: 100vh;
+    background-color: #2F3A53;
 }
 .el-form-item {
     margin-left: 20px;
@@ -211,9 +232,7 @@ a {
     padding-left: 20px;
     background: #147ce8;
 }
-/* .mainPage .contenArea {
-    padding: 10px 10px 10px 30px;
-} */
+
 </style>
 
 

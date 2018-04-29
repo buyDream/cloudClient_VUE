@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 
 var state = { 
     user_id: '',
-    merchant_id: '',
+    // merchant_id: '',
     mobile: '',
     password: '',
     wechat: '',
@@ -23,7 +23,7 @@ var state = {
   
   var mutations = {
     setUserData (state, payload) {
-      state.merchant_id = 'merchant_id' in payload ? payload['merchant_id'] : '';
+      // state.merchant_id = 'merchant_id' in payload ? payload['merchant_id'] : '';
       state.username = 'username' in payload ? payload['username'] : '';
       Cookies.set('Admin-UserName', state.username);
       state.user_id = 'id' in payload ? payload['id'] : ''
