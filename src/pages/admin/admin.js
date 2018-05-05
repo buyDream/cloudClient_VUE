@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import swal from 'sweetalert'
+// import swal from 'sweetalert'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Element from 'element-ui'

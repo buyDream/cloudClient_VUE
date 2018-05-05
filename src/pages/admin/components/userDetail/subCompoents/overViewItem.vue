@@ -25,6 +25,6 @@ export default {
 
 .item .valueTitle {
     font-size: 40px;
-    color:darkturquoise;
+    color: darkturquoise;
 }
 </style>
