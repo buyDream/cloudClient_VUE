@@ -48,7 +48,7 @@
 		<div class="profileItem">
 			<mt-cell title="我的服务" class=""></mt-cell>
 			<div class="server borderGrayColor">
-				<div class="serverItem inlineBlock" v-for="(item, index) in serverArr" :key="index">
+				<div class="serverItem inlineBlock" v-for="(item, index) in serverArr" :key="index" @click="clickMyServer()">
 					<div class="serverItemImg">
 						<img :src="item.serverImg" alt="" srcset="" width="24px">
 						<template v-if="index === 0">

@@ -9,6 +9,7 @@ import Profile from '../components/profile/profile.vue'
 import MyActivity from '../components/profile/myActivity/myActivity.vue'
 import PrivateInfo from '../components/profile/private/privateInfo.vue'
 import ProfileSetting from '../components/profile/private/privateInfoSetting.vue'
+import MsgRemind from '../components/profile/myServer/messageRemind.vue'
 
 Vue.use(Router)
 
@@ -44,6 +45,11 @@ export default new Router({
 		component: ProfileSetting
 	},
 	
+	{
+		path: '/msgRemind',
+		name: 'msgRemind',
+		component: MsgRemind
+	},
 	
   ]
 })

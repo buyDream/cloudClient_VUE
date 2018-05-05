@@ -10,14 +10,7 @@
             <ul class="hasDisc">
                 <li class="introItem"><span class="themePurple">当天赏金活动：</span>在本帖发布悬赏，以及解答悬赏的赏金，全部由活动社承担。咸鱼们只需按要求，若超过当日，视为恶意发帖，取消j奖励并扣罚积分。恶意...</li>
                 <li class="introItem"><span class="themePurple">回购赏金活动：</span>在本帖发布悬赏，以及解答悬赏的赏金，全部由活动社承担。咸鱼们只需按要求，若超过当日，视为恶意发帖，取消j奖励并扣罚积分。恶意...</li>
-
             </ul>
-            <!-- <div class="introItem">
-                <span class="themePurple">当天赏金活动：</span>在本帖发布悬赏，以及解答悬赏的赏金，全部由活动社承担。咸鱼们只需按要求，若超过当日，视为恶意发帖，取消j奖励并扣罚积分。恶意...
-            </div>
-            <div class="introItem">
-                <span class="themePurple">回购赏金活动：</span>在本帖发布悬赏，以及解答悬赏的赏金，全部由活动社承担。咸鱼们只需按要求，若超过当日，视为恶意发帖，取消j奖励并扣罚积分。恶意...
-            </div> -->
         </div>
 
         <div class="newRead whiteColor">
