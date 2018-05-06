@@ -12,9 +12,9 @@
                     <div class="activityDesc" v-show="isSelected">
                         <h4>活动介绍</h4>
                         <div class="desc">
-                        新品没基础？那就让老客户来做点基础销量和评价呀！
-                        <br>
-                        转化率不够？那就赶紧补几单呀？有什么好啰嗦的！
+                            新品没基础？那就让老客户来做点基础销量和评价呀！
+                            <br>
+                            转化率不够？那就赶紧补几单呀？有什么好啰嗦的！
                         </div>
                         <div class="bottomImg">
                             <el-button type="primary" @click="release" round>一键发布</el-button>

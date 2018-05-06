@@ -7,10 +7,12 @@ import TabBar from '../components/tabBar.vue'
 import Introduction from '../components/introduction/introduction.vue'
 import Profile from '../components/profile/profile.vue'
 import MyActivity from '../components/profile/myActivity/myActivity.vue'
+import ActivityDetail from '../components/profile/myActivity/activityDetail.vue'
 import PrivateInfo from '../components/profile/private/privateInfo.vue'
 import ProfileSetting from '../components/profile/private/privateInfoSetting.vue'
 import MsgRemind from '../components/profile/myServer/messageRemind.vue'
-
+import SingleMsg from '../components/profile/myServer/singleMsgRemind.vue'
+import Setting from '../components/profile/myServer/setting.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -34,6 +36,12 @@ export default new Router({
 	},
 
 	{
+		path: '/activityDetail',
+		name: 'activityDetail',
+		component: ActivityDetail
+	},
+
+	{
 		path: '/privateInfo',
 		name: 'privateInfo',
 		component: PrivateInfo
@@ -49,6 +57,18 @@ export default new Router({
 		path: '/msgRemind',
 		name: 'msgRemind',
 		component: MsgRemind
+	},
+
+	{
+		path: '/setting',
+		name: 'setting',
+		component: Setting
+	},
+
+	{
+		path: '/singleMsg',
+		name: 'singleMsg',
+		component: SingleMsg
 	},
 	
   ]

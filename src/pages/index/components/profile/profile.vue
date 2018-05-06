@@ -48,7 +48,7 @@
 		<div class="profileItem">
 			<mt-cell title="我的服务" class=""></mt-cell>
 			<div class="server borderGrayColor">
-				<div class="serverItem inlineBlock" v-for="(item, index) in serverArr" :key="index" @click="clickMyServer()">
+				<div class="serverItem inlineBlock" v-for="(item, index) in serverArr" :key="index" @click="clickMyServer(item.routeLink)">
 					<div class="serverItemImg">
 						<img :src="item.serverImg" alt="" srcset="" width="24px">
 						<template v-if="index === 0">
@@ -73,10 +73,16 @@ export default {
 	data() {
 		return {
 			serverArr: [
-				{ serverTitle: '消息提醒', serverImg: require('../../assets/messageRemind.png') },
-				{ serverTitle: '个人资料', serverImg: require('../../assets/personalInfo.png') },
-				{ serverTitle: '  设置 ', serverImg: require('../../assets/profileSetting.png') },
+				{ serverTitle: '消息提醒', serverImg: require('../../assets/messageRemind.png'), routeLink: '/msgRemind' },
+				{ serverTitle: '个人资料', serverImg: require('../../assets/personalInfo.png'), routeLink: '/privateInfo' },
+				{ serverTitle: '  设置 ', serverImg: require('../../assets/profileSetting.png'), routeLink: '/setting' },
 			]
+		}
+	},
+
+	methods: {
+		clickMyServer(linker) {
+			this.$router.push(linker);
 		}
 	}
 }

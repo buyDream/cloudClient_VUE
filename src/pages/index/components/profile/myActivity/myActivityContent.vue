@@ -1,7 +1,7 @@
 <template>
     <!-- <mt-tab-container-item id="tab-container2"> -->
             <ul class="activityItem">
-                <li v-for="i in 10" :key="i">
+                <li v-for="i in 10" :key="i" @click="checkActivityDetail(i)">
                     <div class="activityItemTop whiteColor">
                         <div class="item inlineBlock">
                             活动ID：456893
@@ -62,6 +62,12 @@ export default {
                     {title: '奖励',  value: '赠品+10元红包'},
             ],
             activityStatus: 2,
+        }
+    },
+
+    methods: {
+        checkActivityDetail(val) {
+            this.$router.push('/activityDetail')
         }
     }
 }

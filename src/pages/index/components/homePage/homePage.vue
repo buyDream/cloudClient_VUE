@@ -8,37 +8,37 @@
         <ul class="homeUL">
             <li>
                 <TrumpetNotic></TrumpetNotic>
-                
             </li>
             <li v-for="item in 10" :key="item">
                 <mt-cell class="music-cell-type3">
-                <div class="suffix">
-                    <img slot="icon" src="../../assets/profile.png" width="100px" height="100px">
-                </div>
-                <div class="itemContent">
-                    <div class="itemTitle">
-                        进口补水面膜2片！抓紧啦！
+                    <div class="suffix">
+                        <img slot="icon" src="../../assets/profile.png" width="100px" height="100px">
                     </div>
-                    <div class="itemSubtitle">
-                        当天赏金活动
-                    </div>
-                    <div class="itemdivrogress">
-                        <div class="zy-progress-content clear-float" style="width:150px">
-                            <div class="zy-progress-runway themeBgPurple fl" style="height: 15px; width: 16%">
-                                已抢160件
-                            </div> 
-                            <div class="zy-progress-progress fr" style="height: 15px;">
-                            16%
-                            </div>
-                        </div>
 
+                    <div class="itemContent">
+                        <div class="itemTitle">
+                            进口补水面膜2片！抓紧啦！
+                        </div>
+                        <div class="itemSubtitle">
+                            当天赏金活动
+                        </div>
+                        <div class="itemdivrogress">
+                            <div class="zy-progress-content clear-float" style="width:150px">
+                                <div class="zy-progress-runway themeBgPurple fl" style="height: 15px; width: 16%">
+                                    已抢160件
+                                </div> 
+                                <div class="zy-progress-progress fr" style="height: 15px;">
+                                16%
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="itemRew inlineBlock">
+                            奖励：赠品+5元红包
+                        </div>
+                        <mt-button class="themeBgPurple whiteTextColor" size="small" @click.native="startRush">马上抢 ></mt-button>
+                        
                     </div>
-                    <div class="itemRew inlineBlock">
-                        奖励：赠品+5元红包
-                    </div>
-                    <mt-button class="themeBgPurple whiteTextColor" size="small" @click.native="startRush">马上抢 ></mt-button>
-                    
-                </div>
                 
             </mt-cell>
             </li>

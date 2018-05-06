@@ -5,6 +5,9 @@ import App from './App.vue'
 import router from './router'
 import store from './../../store/store'
 // import { Radio } from 'element-ui';
+import { Steps,Step } from 'element-ui';
+Vue.use(Steps);
+Vue.use(Step);
 // Vue.use(Radio);
 Vue.use(MintUI)
 // Vue.use(require('vue-roll-text'));
